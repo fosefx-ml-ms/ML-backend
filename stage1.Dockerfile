@@ -13,7 +13,5 @@ RUN source /opt/conda/bin/activate myenv
 
 COPY export.pkl export.pkl
 COPY protos protos
-RUN mkdir src
-RUN /opt/conda/bin/python -m grpc.tools.protoc -I=protos --python_out=src --grpc_python_out=src protos/ml.proto
-COPY src/backend.py src/backend.py
-CMD [ "/opt/conda/bin/python", "src/backend.py" ]
+RUN mkdir out
+CMD ["/opt/conda/bin/python", "-m", "grpc.tools.protoc", "-I=protos", "--python_out=out", "--grpc_python_out=out", "protos/ml.proto"]
