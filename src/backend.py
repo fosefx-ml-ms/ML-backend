@@ -1,17 +1,26 @@
 from concurrent import futures
 import time
+import random
 import grpc
 import ml_pb2
 import ml_pb2_grpc
+from fastai import *
+from fastai.vision import *
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 class MLServicer(ml_pb2_grpc.MLBackendServicer):
+    def __init__(self):
+        self.learner = load_learner(Path("export.pkl"))
+        self.id = random.randint(0, 10000)
+        print("Done initializing " + self.id)
+    
     def ClassifyImage(self, request, context):
         print("Called")
-        print(self)
-        print(request)
-        print(context)
+        img_bytes = request.image
+        img = open_image(BytesIO(img_bytes)))
+         _,_,losses = self.learner.predict(img)
+        print(losses)
         return ml_pb2.ImageClassificationResponse(resultReadable="UNKNOWN")
 
 
