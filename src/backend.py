@@ -12,6 +12,7 @@ class MLServicer(ml_pb2_grpc.MLBackendServicer):
         print(self)
         print(request)
         print(context)
+        return ml_pb2.ImageClassificationResponse(resultReadable="UNKNOWN")
 
 
 if __name__ == '__main__':
