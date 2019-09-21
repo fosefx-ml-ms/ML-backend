@@ -10,3 +10,5 @@ https://pixabay.com/photos/book-embossing-leather-book-cover-3088775/
 * Run `./build_server.sh` to generate new stubs and to build the container
 * Run `./generate_stubs.sh` to generate new stubs based on `./protos/ml.proto`
 * Run `./clean.sh` ro remove all docker containers and images
+* Run `./generate_cert.sh` generates a new SSL-keypair  (requires OpenSSL)
+* Run `./run_client.sh` to build and run client.py
