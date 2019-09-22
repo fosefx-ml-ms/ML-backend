@@ -12,3 +12,6 @@ https://pixabay.com/photos/book-embossing-leather-book-cover-3088775/
 * Run `./clean.sh` ro remove all docker containers and images
 * Run `./generate_cert.sh` generates a new SSL-keypair  (requires OpenSSL)
 * Run `./run_client.sh` to build and run client.py
+
+## Deployment
+> Make sure you replace "localhost" with your services hostname in "generate_certificate.sh" before deploying.
