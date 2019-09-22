@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: ml-backend-service
+  name: ml-backend-service
+  namespace: ml-ms
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ml-backend-service
+    spec:
+      containers:
+        -
+          name: ml-backend-service
+          image: fosefx/ml-ms-ml-backend:0.1.1
+          volumeMounts:
+          - name: cert
+            mountPath: '/secret'
+            readOnly: true
+      volumes:
+      - name: cert
+        secret:
+          secretName: grcp-ml-certificate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ml-backend-service
+  namespace: ml-ms
+spec:
+  ports:
+    -
+      port: 50051
+      targetPort: 50051
+  selector:
+    app: ml-backend-service
