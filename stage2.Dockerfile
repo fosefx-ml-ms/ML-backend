@@ -5,4 +5,4 @@ RUN rm out -rf
 COPY src src
 RUN rm src/img.jpg
 RUN rm src/client.py
-CMD [ "/opt/conda/bin/python", "src/backend.py" ]
+CMD [ "python", "src/backend.py" ]
